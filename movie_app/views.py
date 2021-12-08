@@ -20,7 +20,10 @@ def add_movie(request):
         watched='watched' in request.POST
 
         Item.objects.create(title=title, director=director, genre=genre, summary=summary, score=score, watched=watched)
-
         return redirect('get_movie_list')
 
-    return render(request, 'movie_app/movie_app_add.html')
+    form = ItemForm()
+    context = {
+        'form':form
+    }
+    return render(request, 'movie_app/movie_app_add.html', context)
