@@ -8,13 +8,13 @@
 </head>
 <body>
     <h1>Movie List</h1>
-    <h4>Add a Movie</h4>
-    <form method = "POST" action = "/add/">
+    <h4>Edit a Movie</h4>
+    <form method = "POST">
         {% csrf_token %}
         {{ form.as_p }}
         <div>
             <p>
-                <button type="submit">Add Item</button>
+                <button type="submit">Update Movie</button>
             </p>
         </div>
     </form>

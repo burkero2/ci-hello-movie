@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Item
 from .forms import MovieForm
 
@@ -12,18 +12,38 @@ def get_movie_list(request):
 
 def add_movie(request):
     if request.method=='POST':
-        title = request.POST.get('movie_title')
-        director = request.POST.get('movie_director')
-        genre = request.POST.get('movie_genre')
-        summary = request.POST.get('movie_summary')
-        score = request.POST.get('movie_score')
-        watched='watched' in request.POST
-
-        Item.objects.create(title=title, director=director, genre=genre, summary=summary, score=score, watched=watched)
-        return redirect('get_movie_list')
-
-    form = ItemForm()
+        form = MovieForm(request.POST)
+        if(form.is_valid):
+            form.save()
+            return redirect('get_movie_list')
+    form = MovieForm()
     context = {
         'form':form
     }
     return render(request, 'movie_app/movie_app_add.html', context)
+
+def edit_movie(request, movie_id):
+    movie = get_object_or_404(Item, id=movie_id)
+    
+    if request.method == "POST":
+        form = MovieForm(request.POST, instance=movie)
+        if form.is_valid():
+            form.save()
+            return redirect('get_movie_list')
+    form = MovieForm(instance=movie)
+    
+    context={
+        'form':form
+    }
+    return render(request, 'movie_app/movie_app_edit.html', context)
+
+def toggle_movie(request, movie_id):
+    movie = get_object_or_404(Item, id=movie_id)
+    movie.watched = not movie.watched
+    movie.save()
+    return redirect('get_movie_list')
+
+def delete_movie(request, movie_id):
+    movie = get_object_or_404(Item, id=movie_id)
+    movie.delete()
+    return redirect('get_movie_list')

@@ -21,7 +21,28 @@
             <td>{{ item.genre}}</td>
             <td>{{ item.summary }}</td>
             <td>{{ item.score }}</td>
+            <td>
+                <a href = "/edit/{{ item.id }}">
+                    <button>
+                        Edit Movie
+                    </button>
+                </a>
+            </td>
+            <td>
+                <a href = "/toggle/{{ item.id }}">
+                    <button>
+                        Toggle Watched
+                    </button>
+                </a>
+            </td>
 
+            <td>
+                <a href = "/delete/{{ item.id }}">
+                    <button>
+                        Delete Movie
+                    </button>
+                </a>
+            </td>
         </tr>
             {% empty %}
             <tr><td>You have nothing to do</td></tr>
