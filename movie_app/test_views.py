@@ -36,3 +36,10 @@ class TestViews(TestCase):
         self.assertRedirects(response, '/')
         updated_item = Item.objects.get(id=item.id)
         self.assertFalse(updated_item.watched)
+
+    def test_can_edit_item(self):
+        item = Item.objects.create(title='Test Todo Item', director='Test Movie Items', genre='Test Movie Items', summary='', score=5)
+        response = self.client.post(f'/edit/{item.id}', {'title': 'Updated Name', 'director': 'Test Movie Items', 'genre': 'Test Movie Items', 'summary': '', 'score': 5})
+        self.assertRedirects(response, '/')
+        updated_item = Item.objects.get(id=item.id)
+        self.assertEqual(updated_item.title, 'Updated Name')
