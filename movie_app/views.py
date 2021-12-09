@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Item
 from .forms import MovieForm
 
+
 # Create your views here.
 def get_movie_list(request):
     items = Item.objects.all()

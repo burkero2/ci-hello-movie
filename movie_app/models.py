@@ -10,6 +10,5 @@ class Item(models.Model):
     score = models.IntegerField(null=False, blank=False)
     watched = models.BooleanField(null=False, blank=False, default=False)
 
-    
     def __str__(self):
         return self.title
