@@ -9,7 +9,7 @@
 <body>
     <h1>Movie List</h1>
     <h4>Add a Movie</h4>
-    <form method = "POST" action = "/add/">
+    <form method = "POST" action = "add">
         {% csrf_token %}
         {{ form.as_p }}
         <div>
