@@ -22,12 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mvog#hi%%%px9@@kyfybf1p4w!hg&@9sz5eb@p=^8yoja+g(ws'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-mvog#hi%%%px9@@kyfybf1p4w!hg&@9sz5eb@p=^8yoja+g(ws')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['rb-django-movie-app.herokuapp.com']
+# ALLOWED_HOSTS = ['rb-django-movie-app.herokuapp.com']
+ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 # Application definition
 
@@ -82,8 +83,9 @@ WSGI_APPLICATION = 'movie_list.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
-    'default': dj_database_url.parse('postgres://igyjvffhbbulen:e028dfdd1abc0d9601cfaa9a87ae7924d9b551afa5fc8f26b92d8fb9f55c8c0e@ec2-34-242-89-204.eu-west-1.compute.amazonaws.com:5432/d7marit735d36q')
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
