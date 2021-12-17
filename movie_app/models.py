@@ -9,6 +9,7 @@ class Item(models.Model):
     summary = models.TextField(max_length=400, null=False, blank=True)
     score = models.IntegerField(null=False, blank=False)
     watched = models.BooleanField(null=False, blank=False, default=False)
+    imdb_link = models.URLField(null=False, blank=False)
 
     def __str__(self):
         return self.title

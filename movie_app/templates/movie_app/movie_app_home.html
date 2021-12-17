@@ -9,8 +9,20 @@
 <body>
     <h1>Movie List</h1>
     <h4>List movies you have watched or want to watch</h4>
-    <table>
+
+    <table >
+        <tr>
+            <th>Movie Title</th>
+            <th>Director</th>
+            <th>Genre</th>
+            <th>Description</th>
+            <th>Imdb Page</th>
+            <th>Rating (/5)</th>
+
+
+        </tr>
         {% for item in items %}
+        
         <tr>
             {% if item.watched %}
                 <td><strike>{{ item.title }}</strike></td>
@@ -20,6 +32,7 @@
             <td>{{ item.director }}</td>
             <td>{{ item.genre}}</td>
             <td>{{ item.summary }}</td>
+            <td><a href = "{{ item.imdb_link }}" target = "_blank">Link</a></td>
             <td>{{ item.score }}</td>
             <td>
                 <a href = "/edit/{{ item.id }}">
