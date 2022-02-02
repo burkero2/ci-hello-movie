@@ -10,7 +10,7 @@
     <h1>Movie List</h1>
     <h4>List movies you have watched or want to watch</h4>
 
-    <table >
+    <table>
         <tr>
             <th>Movie Title</th>
             <th>Director</th>
@@ -19,10 +19,10 @@
             <th>Imdb Page</th>
             <th>Rating (/5)</th>
 
-
         </tr>
-        {% for item in items %}
+       
         
+        {% for item in items %}
         <tr>
             {% if item.watched %}
                 <td><strike>{{ item.title }}</strike></td>
@@ -48,7 +48,6 @@
                     </button>
                 </a>
             </td>
-
             <td>
                 <a href = "/delete/{{ item.id }}">
                     <button>
@@ -61,7 +60,10 @@
             <tr><td>You have nothing to do</td></tr>
 
         {% endfor %}
+       
     </table>
+    <br/>
+    <br/>
     <a href = "/add">Add a movie</a>
 </body>
 </html>
